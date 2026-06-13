@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chen Gao — Engineering Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --border: #E4E4DD;
+    --ink: #1C1F23;
+    --ink-soft: #6A6F76;
+    --blue: #2C56A8;
+    --blue-soft: #EAF0FB;
+    --gold: #C8902A;
+    --gold-soft: #FAF1DE;
+    --gold-text: #9C6E1A;
+    --coral: #D9633C;
+    --coral-soft: #FBEAE2;
+    --coral-text: #A8472A;
+    --teal: #1F8E7A;
+    --teal-soft: #E1F2EF;
+    --teal-text: #166B5C;
+    --radius: 10px;
+    --maxw: 1080px;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  a{ color:var(--blue); text-decoration:none; }
+
+  /* ===== Layout helpers ===== */
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  section{ padding:88px 0; border-bottom:1px solid var(--border); }
+  section:last-of-type{ border-bottom:none; }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--blue);
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+
+  .eyebrow::before{
+    content:'';
+    width:22px;
+    height:1px;
+    background:var(--blue);
+    display:inline-block;
+  }
+
+  .eyebrow.gold{ color:var(--gold-text); }
+  .eyebrow.gold::before{ background:var(--gold); }
+  .eyebrow.coral{ color:var(--coral-text); }
+  .eyebrow.coral::before{ background:var(--coral); }
+  .eyebrow.teal{ color:var(--teal-text); }
+  .eyebrow.teal::before{ background:var(--teal); }
+
+  h2.section-title{
+    font-size:clamp(28px, 4vw, 38px);
+    margin-bottom:40px;
+    max-width:560px;
+  }
+
+  /* ===== Header ===== */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(250,250,247,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+  }
+
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:68px;
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  .logo{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:18px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--ink);
+  }
+
+  .logo .badge{
+    width:34px; height:34px;
+    border:1.5px solid var(--ink);
+    border-radius:7px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    font-weight:600;
+  }
+
+  nav.links{
+    display:flex;
+    gap:32px;
+    font-size:14.5px;
+    font-weight:500;
+  }
+
+  nav.links a{ color:var(--ink-soft); transition:color .15s; }
+  nav.links a:hover{ color:var(--ink); }
+
+  .nav-cta{
+    border:1px solid var(--ink);
+    border-radius:999px;
+    padding:8px 18px;
+    font-size:13.5px;
+    font-weight:500;
+    color:var(--ink);
+    transition:background .15s, color .15s;
+  }
+  .nav-cta:hover{ background:var(--ink); color:var(--surface); }
+
+  @media (max-width: 720px){
+    nav.links{ display:none; }
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    padding-top:120px;
+    padding-bottom:80px;
+    border-bottom:1px solid var(--border);
+  }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap:60px;
+    align-items:start;
+  }
+
+  .hero h1{
+    font-size:clamp(40px, 6.4vw, 68px);
+    line-height:1.05;
+    margin-bottom:22px;
+  }
+
+  .hero h1 span{ color:var(--blue); }
+
+  .hero .tagline{
+    font-size:18px;
+    color:var(--ink-soft);
+    max-width:480px;
+    margin-bottom:36px;
+  }
+
+  .hero-actions{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:13px 24px;
+    border-radius:999px;
+    font-weight:500;
+    font-size:14.5px;
+    border:1px solid var(--ink);
+    transition:all .15s;
+  }
+
+  .btn-solid{ background:var(--ink); color:var(--surface); }
+  .btn-solid:hover{ background:var(--blue); border-color:var(--blue); }
+
+  .btn-outline{ color:var(--ink); }
+  .btn-outline:hover{ background:var(--ink); color:var(--surface); }
+
+  /* Hero side panel — scoreboard */
+  .scoreboard{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+
+  .scoreboard-head{
+    background:var(--ink);
+    color:var(--surface);
+    padding:12px 18px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    display:flex;
+    justify-content:space-between;
+  }
+
+  .score-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:18px 18px;
+    border-bottom:1px solid var(--border);
+  }
+  .score-row:last-child{ border-bottom:none; }
+
+  .score-label{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    max-width:160px;
+  }
+
+  .score-value{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:30px;
+    color:var(--ink);
+    white-space:nowrap;
+  }
+
+  .score-value small{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    font-weight:500;
+    color:var(--ink-soft);
+    margin-left:4px;
+  }
+
+  @media (max-width: 880px){
+    .hero-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ===== About ===== */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:64px;
+    align-items:start;
+  }
+
+  .about-grid p{ color:var(--ink-soft); margin-bottom:16px; }
+  .about-grid p:last-child{ margin-bottom:0; }
+
+  .about-grid .lede{
+    color:var(--ink);
+    font-size:19px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:500;
+    line-height:1.45;
+    margin-bottom:20px;
+  }
+
+  .info-list{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:6px 22px;
+  }
+
+  .info-row{
+    display:flex;
+    justify-content:space-between;
+    padding:16px 0;
+    border-bottom:1px solid var(--border);
+    font-size:14.5px;
+  }
+  .info-row:last-child{ border-bottom:none; }
+
+  .info-row span:first-child{
+    color:var(--ink-soft);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    padding-top:2px;
+  }
+
+  .info-row span:last-child{ text-align:right; font-weight:500; }
+
+  @media (max-width: 880px){
+    .about-grid{ grid-template-columns:1fr; gap:36px; }
+  }
+
+  /* ===== Season Ladder (Awards) ===== */
+  .ladder{
+    position:relative;
+    margin-top:8px;
+  }
+
+  .ladder::before{
+    content:'';
+    position:absolute;
+    left:19px;
+    top:14px;
+    bottom:14px;
+    width:1px;
+    background:var(--border);
+  }
+
+  .season{
+    position:relative;
+    padding-left:56px;
+    margin-bottom:36px;
+  }
+  .season:last-child{ margin-bottom:0; }
+
+  .season-node{
+    position:absolute;
+    left:8px;
+    top:8px;
+    width:24px; height:24px;
+    border-radius:50%;
+    background:var(--surface);
+    border:2px solid var(--blue);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    font-weight:600;
+    color:var(--blue);
+    z-index:1;
+  }
+
+  .season-node.gold{ border-color:var(--gold); color:var(--gold-text); }
+  .season-node.coral{ border-color:var(--coral); color:var(--coral-text); }
+
+  .qualifier.gold{ color:var(--gold-text); }
+  .qualifier.coral{ color:var(--coral-text); }
+
+  .season-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:26px 28px;
+  }
+
+  .season-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:6px;
+  }
+
+  .season-head h3{
+    font-size:21px;
+  }
+
+  .season-meta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    text-align:right;
+    letter-spacing:0.04em;
+  }
+
+  .season-game{
+    color:var(--ink-soft);
+    font-size:14px;
+    margin-bottom:18px;
+  }
+
+  .chip-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  .chip{
+    font-size:12.5px;
+    font-weight:500;
+    padding:6px 13px;
+    border-radius:999px;
+    border:1px solid var(--border);
+    color:var(--ink-soft);
+    background:var(--bg);
+  }
+
+  .chip.gold{
+    border-color:#EBD3A0;
+    background:var(--gold-soft);
+    color:var(--gold-text);
+  }
+
+  .chip.coral{
+    border-color:#F3CBB9;
+    background:var(--coral-soft);
+    color:var(--coral-text);
+  }
+
+  .chip.teal{
+    border-color:#BFE3DB;
+    background:var(--teal-soft);
+    color:var(--teal-text);
+  }
+
+  .qualifier{
+    margin-top:18px;
+    padding-top:16px;
+    border-top:1px dashed var(--border);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--blue);
+    font-weight:600;
+  }
+
+  .qualifier::before{
+    content:'★';
+    font-size:14px;
+  }
+
+  /* ===== Projects ===== */
+  .projects-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:24px;
+  }
+
+  .project-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .project-img{
+    aspect-ratio:16/10;
+    background:
+      repeating-linear-gradient(45deg, var(--border) 0, var(--border) 1px, transparent 1px, transparent 14px),
+      var(--bg);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--ink-soft);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    border-bottom:1px solid var(--border);
+  }
+
+  .project-body{
+    padding:22px 24px 24px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .project-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--blue);
+    margin-bottom:8px;
+  }
+
+  .project-tag.gold{ color:var(--gold-text); }
+  .project-tag.coral{ color:var(--coral-text); }
+  .project-tag.teal{ color:var(--teal-text); }
+
+  .project-body h3{ font-size:19px; margin-bottom:10px; }
+  .project-body p{ color:var(--ink-soft); font-size:14.5px; flex:1; }
+
+  .project-foot{
+    margin-top:16px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width:760px){
+    .projects-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ===== Skills ===== */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+    gap:20px;
+  }
+
+  .skill-card{
+    border:1px solid var(--border);
+    border-top:3px solid var(--blue);
+    border-radius:var(--radius);
+    padding:24px;
+    background:var(--surface);
+  }
+
+  .skill-card.gold{ border-top-color:var(--gold); }
+  .skill-card.coral{ border-top-color:var(--coral); }
+  .skill-card.teal{ border-top-color:var(--teal); }
+
+  .skill-card h3{
+    font-size:15px;
+    font-family:'IBM Plex Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--ink-soft);
+    margin-bottom:16px;
+    font-weight:600;
+  }
+
+  .skill-card .chip-row .chip{ background:var(--bg); }
+
+  @media (max-width:760px){
+    .skills-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ===== Footer / Contact ===== */
+  footer{
+    padding:64px 0 40px;
+  }
+
+  .footer-grid{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:24px;
+  }
+
+  .footer-grid h2{
+    font-size:clamp(26px, 4vw, 36px);
+    max-width:420px;
+  }
+
+  .footer-links{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    font-size:14.5px;
+  }
+
+  .footer-bottom{
+    margin-top:48px;
+    padding-top:24px;
+    border-top:1px solid var(--border);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  /* ===== Reveal animation ===== */
+  .reveal{
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo"><span class="badge">CG</span> Chen Gao</div>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#awards">Awards</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+    </nav>
+    <a href="#contact" class="nav-cta">Get in touch</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Engineering Portfolio</div>
+      <h1>Aspiring engineer.<br>Built on <span>math, code, and robots.</span></h1>
+      <p class="tagline">
+        Chen Gao — a student engineer with a foundation in math, physics, and computer science,
+        and a competitive robotics record to match: three consecutive VEX IQ World Championship
+        qualifications. Now building toward VEX V5 and FTC — the next set of problems worth solving.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-solid">View My Work</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+
+    <div class="scoreboard">
+      <div class="scoreboard-head">
+        <span>By The Numbers</span>
+        <span class="mono">PROFILE</span>
+      </div>
+      <div class="score-row">
+        <div class="score-label">VEX IQ World Championship qualifications</div>
+        <div class="score-value" style="color:var(--blue);">3<small>/ 3 seasons</small></div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">Robotics &amp; competition awards earned</div>
+        <div class="score-value" style="color:var(--gold-text);">15+</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">Core STEM focus</div>
+        <div class="score-value" style="font-size:22px; color:var(--teal-text);">Math · CS · Physics</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">Currently building toward</div>
+        <div class="score-value" style="font-size:22px; color:var(--coral-text);">FTC &amp; V5</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <div class="eyebrow">About</div>
+      <h2 class="section-title">An engineer who likes to build, test, and try again.</h2>
+    </div>
+    <div class="reveal">
+      <p class="lede">
+        I'm Chen Gao — a student with a strong interest in math, physics, and computer science,
+        and a track record of turning that into things that actually work: robots that hold up
+        under competition pressure, code that runs, and ideas that survive contact with reality.
+      </p>
+      <p>
+        On the robotics side, I've competed in VEX IQ for three seasons and qualified for the
+        VEX IQ World Championship every single time — across the Full Volume, Rapid Relay, and
+        Mix &amp; Match games. Along the way my teams have earned Excellence, Teamwork Champion,
+        Build, and Robot Skills awards at the regional and state level.
+      </p>
+      <p>
+        Outside of robotics, I'm building a foundation in math, physics, and computer science
+        through coursework and STEM competitions — and I'm currently preparing to step up from
+        VEX IQ into both VEX V5 and FTC, bringing the same focus on iteration, problem-solving,
+        and team strategy to bigger fields and bigger robots.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="awards">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow gold">Awards &amp; Results</div>
+      <h2 class="section-title">Recognition from competition and the classroom.</h2>
+    </div>
+
+    <h3 style="font-size:18px; margin-bottom:18px;">Robotics — VEX IQ World Championship streak</h3>
+    <div class="ladder">
+
+      <div class="season reveal">
+        <div class="season-node">01</div>
+        <div class="season-card">
+          <div class="season-head">
+            <h3>Full Volume</h3>
+            <div class="season-meta mono">2023–2024 · Team 63330B</div>
+          </div>
+          <div class="season-game">VEX IQ Robotics Competition — first season competing</div>
+          <div class="chip-row">
+            <span class="chip">Teamwork Champion Award</span>
+            <span class="chip">Teamwork Champion Award</span>
+            <span class="chip gold">Amaze Award</span>
+            <span class="chip gold">Teamwork Champion Award</span>
+          </div>
+          <div class="qualifier">Qualified for the VEX IQ World Championship</div>
+        </div>
+      </div>
+
+      <div class="season reveal">
+        <div class="season-node gold">02</div>
+        <div class="season-card">
+          <div class="season-head">
+            <h3>Rapid Relay</h3>
+            <div class="season-meta mono">2024–2025 · Team 63330D</div>
+          </div>
+          <div class="season-game">VEX IQ Robotics Competition — second season, expanded award haul</div>
+          <div class="chip-row">
+            <span class="chip">Teamwork Champion Award</span>
+            <span class="chip">Excellence Award</span>
+            <span class="chip">Teamwork Champion Award</span>
+            <span class="chip">Excellence Award</span>
+            <span class="chip">Teamwork 2nd Place</span>
+            <span class="chip gold">Think Award</span>
+            <span class="chip gold">Teamwork Champion Award</span>
+            <span class="chip gold">Robot Skills 2nd Place</span>
+          </div>
+          <div class="qualifier gold">Qualified for the VEX IQ World Championship</div>
+        </div>
+      </div>
+
+      <div class="season reveal">
+        <div class="season-node coral">03</div>
+        <div class="season-card">
+          <div class="season-head">
+            <h3>Mix &amp; Match</h3>
+            <div class="season-meta mono">2025–2026 · Team 63330Z</div>
+          </div>
+          <div class="season-game">VEX IQ Robotics Competition — most recent season, three-peat for Worlds</div>
+          <div class="chip-row">
+            <span class="chip">Build Award</span>
+            <span class="chip">Excellence Award — Middle School</span>
+            <span class="chip">Teamwork Champion Award</span>
+            <span class="chip">Teamwork 2nd Place</span>
+            <span class="chip">Robot Skills Champion</span>
+            <span class="chip">Excellence Award</span>
+            <span class="chip">Teamwork Champion Award</span>
+            <span class="chip">Robot Skills 2nd Place</span>
+            <span class="chip coral">Excellence Award</span>
+            <span class="chip coral">Teamwork Champion Award</span>
+          </div>
+          <div class="qualifier coral">Qualified for the VEX IQ World Championship</div>
+        </div>
+      </div>
+
+    </div>
+
+    <h3 style="font-size:18px; margin:48px 0 18px;">Academic &amp; STEM</h3>
+    <div class="skills-grid">
+      <div class="skill-card gold reveal">
+        <h3>Math</h3>
+        <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:14px;">
+          Add competition results, honors, or coursework here — e.g. AMC, MathCounts, or
+          advanced coursework.
+        </p>
+        <div class="chip-row">
+          <span class="chip gold">Add result</span>
+          <span class="chip gold">Add result</span>
+        </div>
+      </div>
+      <div class="skill-card teal reveal">
+        <h3>Computer Science</h3>
+        <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:14px;">
+          Add CS achievements here — e.g. hackathons, AP CS, programming competitions.
+        </p>
+        <div class="chip-row">
+          <span class="chip teal">Add result</span>
+          <span class="chip teal">Add result</span>
+        </div>
+      </div>
+      <div class="skill-card coral reveal">
+        <h3>Physics &amp; Science</h3>
+        <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:14px;">
+          Add science achievements here — e.g. science olympiad, science fair, AP Physics.
+        </p>
+        <div class="chip-row">
+          <span class="chip coral">Add result</span>
+          <span class="chip coral">Add result</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow coral">Projects</div>
+      <h2 class="section-title">Things I've built — robots, code, and beyond.</h2>
+    </div>
+
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-img">Robot Photo — Full Volume</div>
+        <div class="project-body">
+          <div class="project-tag">VEX IQ · 2023–2024</div>
+          <h3>Full Volume Robot</h3>
+          <p>First competition robot, built for the Full Volume game. Focused on consistent scoring
+            and a reliable drivetrain that helped the team earn Teamwork Champion and Amaze awards
+            on the way to Worlds.</p>
+          <div class="project-foot">
+            <span class="chip">Design</span>
+            <span class="chip">Build</span>
+            <span class="chip">Drivetrain</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-img">Robot Photo — Rapid Relay</div>
+        <div class="project-body">
+          <div class="project-tag">VEX IQ · 2024–2025</div>
+          <h3>Rapid Relay Robot</h3>
+          <p>Second-season build with upgraded intake and scoring mechanisms, plus a tuned autonomous
+            routine that contributed to Excellence and Robot Skills 2nd Place results.</p>
+          <div class="project-foot">
+            <span class="chip">Mechanisms</span>
+            <span class="chip">Autonomous</span>
+            <span class="chip">Skills Run</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-img">Robot Photo — Mix &amp; Match</div>
+        <div class="project-body">
+          <div class="project-tag">VEX IQ · 2025–2026</div>
+          <h3>Mix &amp; Match Robot</h3>
+          <p>Current-season robot built to be modular and quick to adjust between matches — the
+            Build Award and Robot Skills Champion result reflects the focus on reliable, repeatable
+            performance.</p>
+          <div class="project-foot">
+            <span class="chip">Modular Build</span>
+            <span class="chip">Robot Skills</span>
+            <span class="chip">Strategy</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-img">Coming Soon — VEX V5</div>
+        <div class="project-body">
+          <div class="project-tag coral">VEX V5 · Upcoming</div>
+          <h3>VEX V5 Prep Project</h3>
+          <p>Stepping up from VEX IQ to VEX V5 — a bigger field, a bigger robot, and a chance
+            to apply everything learned about build quality and team strategy at the next level.</p>
+          <div class="project-foot">
+            <span class="chip">CAD</span>
+            <span class="chip">Planning</span>
+            <span class="chip">In Progress</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-img">Coming Soon — FTC</div>
+        <div class="project-body">
+          <div class="project-tag coral">FTC · Upcoming</div>
+          <h3>FTC Prep Project</h3>
+          <p>Preparing to step up from VEX IQ to FTC — applying everything learned about build
+            quality, CAD, and team strategy to a larger robot and a longer season.</p>
+          <div class="project-foot">
+            <span class="chip">CAD</span>
+            <span class="chip">Planning</span>
+            <span class="chip">In Progress</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-img">Add Photo — CS / Coding Project</div>
+        <div class="project-body">
+          <div class="project-tag teal">Computer Science</div>
+          <h3>Coding Project Name</h3>
+          <p>Placeholder for a programming project — a script, app, or tool you've built.
+            Swap in details about what it does and what you used to build it.</p>
+          <div class="project-foot">
+            <span class="chip">Add tech</span>
+            <span class="chip">Add tech</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-img">Add Photo — Math / Physics Project</div>
+        <div class="project-body">
+          <div class="project-tag gold">Math &amp; Physics</div>
+          <h3>STEM Project Name</h3>
+          <p>Placeholder for a math, physics, or science project — competition entry,
+            research, or independent study. Swap in your details here.</p>
+          <div class="project-foot">
+            <span class="chip">Add detail</span>
+            <span class="chip">Add detail</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow teal">Skills &amp; Technologies</div>
+      <h2 class="section-title">A toolkit spanning the build table and the whiteboard.</h2>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h3>Build &amp; Design</h3>
+        <div class="chip-row">
+          <span class="chip">VEX IQ Build System</span>
+          <span class="chip">Mechanism Design</span>
+          <span class="chip">CAD</span>
+          <span class="chip">Rapid Prototyping</span>
+        </div>
+      </div>
+      <div class="skill-card teal reveal">
+        <h3>Programming</h3>
+        <div class="chip-row">
+          <span class="chip teal">VEXcode IQ</span>
+          <span class="chip teal">Blocks</span>
+          <span class="chip teal">Python</span>
+          <span class="chip teal">Autonomous Routines</span>
+        </div>
+      </div>
+      <div class="skill-card gold reveal">
+        <h3>Math &amp; Science</h3>
+        <div class="chip-row">
+          <span class="chip gold">Add subject</span>
+          <span class="chip gold">Add subject</span>
+          <span class="chip gold">Add subject</span>
+        </div>
+      </div>
+      <div class="skill-card coral reveal">
+        <h3>Competition &amp; Teamwork</h3>
+        <div class="chip-row">
+          <span class="chip coral">Match Strategy</span>
+          <span class="chip coral">Robot Skills Runs</span>
+          <span class="chip coral">Driving</span>
+          <span class="chip coral">Team Leadership</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <h2>Let's talk — robotics, <br>STEM, or what's next.</h2>
+      <div class="footer-links">
+        <a href="mailto:your.email@example.com">your.email@example.com</a>
+        <a href="https://github.com/chengao-2012" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.youtube.com/@BiggyTippy" target="_blank" rel="noopener">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Chen Gao</span>
+      <span>VIQRC Teams 63330B / 63330D / 63330Z</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
